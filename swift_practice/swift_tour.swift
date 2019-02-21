@@ -96,3 +96,46 @@ default:
     print("Everything tastes good in soup.")
 }
 // OUTPUT: "Is it a spicy red pepper?"
+
+
+let intersetingNumber = [
+    "prime": [2, 3, 5, 7, 11],
+    "fibs": [1, 1, 2, 3, 5, 8],
+    "square": [1, 4, 9, 16, 25]
+]
+
+var largest = 0
+var s: String? = nil
+
+
+for (kind, nums) in intersetingNumber {
+    for num in nums {
+        if num > largest {
+            largest = num
+            s = kind
+        }
+    }
+}
+print(largest, s!) // 25 square
+
+var n = 2
+while n < 100 {
+    n*=2
+}
+print(n) //128
+
+//The block of code can be placed at the end ensuring that the code is ran atleast pmce
+var m = 2
+repeat {
+    m*=2
+} while m < 100
+print(m)
+
+// keep an index using ..< or ....
+//Use ..< to make a range that omits its upper value and ... a range that includes both values
+
+var total = 0
+for _ in 0...4 {
+    total += 1
+}
+print(total) //5
