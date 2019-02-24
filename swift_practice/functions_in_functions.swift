@@ -25,7 +25,6 @@ print(increment(7)) //8
 func hasAnyMatch(list: [Int], condition: (Int) -> Bool) -> Bool {
     for item in list {
         if condition(item) {
-            print(item)
             return true
         }
     }
