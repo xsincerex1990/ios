@@ -13,6 +13,8 @@
 		633646C91B8C657400FF45E2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 633646C71B8C657400FF45E2 /* LaunchScreen.xib */; };
 		AD6F1CCC20EBCFF600198C34 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AD6F1CCB20EBCFF600198C34 /* README.md */; };
 		ADEB04ED1FBDFEAA00026359 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 633646C21B8C657400FF45E2 /* Main.storyboard */; };
+		B8C72D1322273CAB0088A044 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B8C72D1022273CAB0088A044 /* ProgressHUD.bundle */; };
+		B8C72D1422273CAB0088A044 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C72D1122273CAB0088A044 /* ProgressHUD.m */; };
 		B8E3CEB92225EABE00CA4D35 /* questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E3CEB82225EABE00CA4D35 /* questions.swift */; };
 		B8E3CEBB2225EBDE00CA4D35 /* questionbank.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E3CEBA2225EBDE00CA4D35 /* questionbank.swift */; };
 /* End PBXBuildFile section */
@@ -26,6 +28,10 @@
 		633646C51B8C657400FF45E2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		633646C81B8C657400FF45E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		AD6F1CCB20EBCFF600198C34 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B8C72D0F22273CAA0088A044 /* Quizzler-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Quizzler-Bridging-Header.h"; sourceTree = "<group>"; };
+		B8C72D1022273CAB0088A044 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ProgressHUD.bundle; path = ProgressHUD/ProgressHUD/ProgressHUD/ProgressHUD.bundle; sourceTree = SOURCE_ROOT; };
+		B8C72D1122273CAB0088A044 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProgressHUD.m; path = ProgressHUD/ProgressHUD/ProgressHUD/ProgressHUD.m; sourceTree = SOURCE_ROOT; };
+		B8C72D1222273CAB0088A044 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProgressHUD.h; path = ProgressHUD/ProgressHUD/ProgressHUD/ProgressHUD.h; sourceTree = SOURCE_ROOT; };
 		B8E3CEB82225EABE00CA4D35 /* questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = questions.swift; sourceTree = "<group>"; };
 		B8E3CEBA2225EBDE00CA4D35 /* questionbank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = questionbank.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,8 +78,12 @@
 		633646BC1B8C657400FF45E2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B8C72D1022273CAB0088A044 /* ProgressHUD.bundle */,
+				B8C72D1222273CAB0088A044 /* ProgressHUD.h */,
+				B8C72D1122273CAB0088A044 /* ProgressHUD.m */,
 				633646C71B8C657400FF45E2 /* LaunchScreen.xib */,
 				633646BD1B8C657400FF45E2 /* Info.plist */,
+				B8C72D0F22273CAA0088A044 /* Quizzler-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -138,7 +148,7 @@
 					633646B81B8C657400FF45E2 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = U4RKKTFD7N;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -168,6 +178,7 @@
 				ADEB04ED1FBDFEAA00026359 /* Main.storyboard in Resources */,
 				633646C91B8C657400FF45E2 /* LaunchScreen.xib in Resources */,
 				AD6F1CCC20EBCFF600198C34 /* README.md in Resources */,
+				B8C72D1322273CAB0088A044 /* ProgressHUD.bundle in Resources */,
 				633646C61B8C657400FF45E2 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -181,6 +192,7 @@
 			files = (
 				633646C11B8C657400FF45E2 /* ViewController.swift in Sources */,
 				B8E3CEBB2225EBDE00CA4D35 /* questionbank.swift in Sources */,
+				B8C72D1422273CAB0088A044 /* ProgressHUD.m in Sources */,
 				B8E3CEB92225EABE00CA4D35 /* questions.swift in Sources */,
 				633646BF1B8C657400FF45E2 /* AppDelegate.swift in Sources */,
 			);
@@ -322,7 +334,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jsan123.Quizzler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Quizzler/Quizzler-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
@@ -340,7 +352,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jsan123.Quizzler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Quizzler/Quizzler-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 			};

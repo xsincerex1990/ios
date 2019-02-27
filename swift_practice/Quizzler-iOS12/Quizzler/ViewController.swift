@@ -53,7 +53,7 @@ class ViewController: UIViewController {
             questionLabel.text = allQuestions.list[qNum].questionText
             updateUI()
         } else {
-            let alert = UIAlertController(title: "Awesome", message: "You finished the game", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Awesome", message: "You finished the game!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Restart", style: .default, handler: {(UIAlertAction) in self.startOver()}))
             present(alert, animated: true, completion: nil)
         }
@@ -64,10 +64,10 @@ class ViewController: UIViewController {
         let correctAns =  allQuestions.list[qNum].answer
         
         if correctAns == pickedAnswer {
-            print("Correct")
+            ProgressHUD.showSuccess("Correct!")
             score += 1
         } else {
-            print("Wrong")
+            ProgressHUD.showError("Wrong!")
         }
     }
     
