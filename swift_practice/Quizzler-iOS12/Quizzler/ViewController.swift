@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     let allQuestions = QuestionBank()
     var pickedAnswer: Bool = false
     var qNum = 0
+    var score = 0
     
     
     @IBOutlet weak var questionLabel: UILabel!
@@ -22,9 +23,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let questions = allQuestions.list[qNum] // Questions(text: "string", cAns: Bool) text = questionText, cAns = answer
-        questionLabel.text = questions.questionText  // ui label text is equal to the array that contains the Questions object located at list[x]
+            nextQuestion()
     }
 
 
@@ -43,16 +42,20 @@ class ViewController: UIViewController {
     
     
     func updateUI() {
-      
+        scoreLabel.text = "Score: \(score)"
+        progressLabel.text = "\(qNum + 1) / 13"
+        progressBar.frame.size.width = (view.frame.size.width / 13) * CGFloat(qNum + 1)
     }
     
 
     func nextQuestion() {
         if qNum <= 12 {
             questionLabel.text = allQuestions.list[qNum].questionText
+            updateUI()
         } else {
-            print("Done")
-            qNum = 0
+            let alert = UIAlertController(title: "Awesome", message: "You finished the game", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Restart", style: .default, handler: {(UIAlertAction) in self.startOver()}))
+            present(alert, animated: true, completion: nil)
         }
     }
     
@@ -62,6 +65,7 @@ class ViewController: UIViewController {
         
         if correctAns == pickedAnswer {
             print("Correct")
+            score += 1
         } else {
             print("Wrong")
         }
@@ -69,7 +73,9 @@ class ViewController: UIViewController {
     
     
     func startOver() {
-       
+        qNum = 0
+        score = 0
+        nextQuestion()
     }
     
 
