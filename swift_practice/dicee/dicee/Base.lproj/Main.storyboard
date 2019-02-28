@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +13,7 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="dicee" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -48,7 +47,7 @@
                                     <constraint firstAttribute="height" constant="120" id="tHL-tE-RWS"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2e-Hi-rBH" userLabel="TopView">
+                            <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p2e-Hi-rBH" userLabel="TopView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="308"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="diceeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="3g5-eg-gvV">
@@ -88,22 +87,23 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="p2e-Hi-rBH" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="0Pw-PK-Vgs"/>
+                            <constraint firstItem="p2e-Hi-rBH" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="0Pw-PK-Vgs"/>
                             <constraint firstItem="gbm-Tm-spe" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="2b4-zZ-MY8"/>
+                            <constraint firstItem="1RE-mT-p6R" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2iE-LH-M76"/>
                             <constraint firstAttribute="bottom" secondItem="1RE-mT-p6R" secondAttribute="bottom" id="B5W-E2-cew"/>
                             <constraint firstItem="gBW-SM-06i" firstAttribute="top" secondItem="gbm-Tm-spe" secondAttribute="bottom" id="CL8-tJ-Ph6"/>
-                            <constraint firstItem="gBW-SM-06i" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Hhu-JN-hli"/>
-                            <constraint firstItem="p2e-Hi-rBH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MXy-sg-Jud"/>
+                            <constraint firstItem="gBW-SM-06i" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Hhu-JN-hli"/>
+                            <constraint firstItem="p2e-Hi-rBH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="MXy-sg-Jud"/>
                             <constraint firstAttribute="bottom" secondItem="gBW-SM-06i" secondAttribute="bottom" id="VZN-TS-ZVz"/>
                             <constraint firstItem="1RE-mT-p6R" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="XBY-Ga-Z1I"/>
-                            <constraint firstItem="1RE-mT-p6R" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cgI-zN-wfd"/>
+                            <constraint firstItem="1RE-mT-p6R" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cgI-zN-wfd"/>
                             <constraint firstItem="p2e-Hi-rBH" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="e3r-q1-i2t"/>
-                            <constraint firstItem="gBW-SM-06i" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="e7I-43-3lz"/>
+                            <constraint firstItem="gBW-SM-06i" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="e7I-43-3lz"/>
+                            <constraint firstItem="1RE-mT-p6R" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="gbC-ea-IrD"/>
                             <constraint firstItem="gbm-Tm-spe" firstAttribute="top" secondItem="p2e-Hi-rBH" secondAttribute="bottom" id="gpf-9K-h9q"/>
-                            <constraint firstItem="1RE-mT-p6R" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="iiT-nz-n9x"/>
+                            <constraint firstItem="1RE-mT-p6R" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="iiT-nz-n9x"/>
                             <constraint firstItem="gbm-Tm-spe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uiM-7q-FS0"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="diceImageView1" destination="zSe-hv-DJu" id="3TR-dQ-jc9"/>
@@ -112,7 +112,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="132.26600985221674"/>
+            <point key="canvasLocation" x="131.52709359605913" y="132"/>
         </scene>
     </scenes>
     <resources>
