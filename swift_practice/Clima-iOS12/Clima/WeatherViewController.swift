@@ -40,6 +40,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Con
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        locationManager.delegate = nil
     
         
         
@@ -53,10 +54,14 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Con
     //Write the getWeatherData method here:
     
     func getWeatherData(url: String, parameters: [String:String]) {
+        //request is a asynchronous method
         Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
-            response in
+            response in //inside a closure
             if response.result.isSuccess {
-                print(response.result)
+                let weatherData : JSON = JSON(response.result.value!)// safe to unwrap because we checked with IF
+                
+                self.updateWeatherData(json : weatherData)
+                
             }
             else {
                 print ("Error \(response.result.error!)")
@@ -76,6 +81,11 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Con
    
     
     //Write the updateWeatherData method here:
+    
+    func updateWeatherData(json: JSON) {
+        let tempResult = json["main"]["temp"]
+        print(tempResult)
+    }
     
 
     
