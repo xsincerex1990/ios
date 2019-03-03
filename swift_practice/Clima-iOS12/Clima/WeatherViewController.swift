@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 
-class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Conforms to locationmanagerdelagate
+class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Conforms to  the rules of CLLocationManagerDelagate
     
     //Constants
     let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
@@ -19,6 +19,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Con
     
 
     //TODO: Declare instance variables here
+    let locationManager = CLLocationManager()
     
 
     
@@ -33,6 +34,10 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Con
         
         
         //TODO:Set up the location manager here.
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     
         
         
@@ -78,6 +83,24 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Con
     
     //Write the didUpdateLocations method here:
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations[locations.count - 1]
+        if location.horizontalAccuracy > 0 {
+            locationManager.stopUpdatingLocation()
+            
+            print("Longitude = \(location.coordinate.longitude), latitude = \(location.coordinate.latitude )")
+            
+            let latitude = String(location.coordinate.latitude)
+            let longitude = String(location.coordinate.longitude)
+            
+            let params : [String : String] = ["lat": latitude, "lon": longitude, "appid": APP_ID]
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+        cityLabel.text = "Location Unavailable"
+    }
     
     
     //Write the didFailWithError method here:
