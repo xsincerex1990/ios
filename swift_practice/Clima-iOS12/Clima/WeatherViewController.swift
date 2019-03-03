@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreLocation
+import Alamofire
+import SwiftyJSON
 
 
 class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Conforms to  the rules of CLLocationManagerDelagate
@@ -49,6 +51,19 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Con
     /***************************************************************/
     
     //Write the getWeatherData method here:
+    
+    func getWeatherData(url: String, parameters: [String:String]) {
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
+            response in
+            if response.result.isSuccess {
+                print(response.result)
+            }
+            else {
+                print ("Error \(response.result.error!)")
+                self.cityLabel.text = "Connection issues."
+            }
+    }
+    }
     
 
     
@@ -94,20 +109,17 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Con
             let longitude = String(location.coordinate.longitude)
             
             let params : [String : String] = ["lat": latitude, "lon": longitude, "appid": APP_ID]
+            
+            getWeatherData(url: WEATHER_URL, parameters: params)
         }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
-        cityLabel.text = "Location Unavailable"
     }
     
     
     //Write the didFailWithError method here:
-    
-    
-    
-
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+        cityLabel.text = "Location Unavailable"
+    }
     
     //MARK: - Change City Delegate methods
     /***************************************************************/
@@ -124,5 +136,4 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Con
     
     
 }
-
 
