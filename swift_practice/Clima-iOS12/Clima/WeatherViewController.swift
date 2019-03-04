@@ -22,6 +22,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Con
 
     //TODO: Declare instance variables here
     let locationManager = CLLocationManager()
+    let weatherDataModel = WeatherDataModel()
     
 
     
@@ -58,9 +59,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Con
         Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
             response in //inside a closure
             if response.result.isSuccess {
-                let weatherData : JSON = JSON(response.result.value!)// safe to unwrap because we checked with IF
+                let weatherJSON : JSON = JSON(response.result.value!)// safe to unwrap because we checked with IF
                 
-                self.updateWeatherData(json : weatherData)
+                self.updateWeatherData(json : weatherJSON)
                 
             }
             else {
@@ -83,12 +84,21 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Con
     //Write the updateWeatherData method here:
     
     func updateWeatherData(json: JSON) {
-        let tempResult = json["main"]["temp"]
-        print(tempResult)
-    }
+        if let tempResult = json["main"]["temp"].double {
+            
+            weatherDataModel.temperature = Int(tempResult - 273.15)
+            weatherDataModel.city = json["name"].stringValue
+            weatherDataModel.condition = json["name"][0]["id"].intValue
+            weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
+            
+            updateUIWithWeatherData()
+        }
+        else {
+            cityLabel.text = "Weather Unavailable"
+        }
     
 
-    
+    }
     
     
     //MARK: - UI Updates
@@ -96,7 +106,11 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Con
     
     
     //Write the updateUIWithWeatherData method here:
-    
+        func updateUIWithWeatherData() {
+            cityLabel.text = weatherDataModel.city
+            temperatureLabel.text = "\(weatherDataModel.temperature)"
+            weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
+        }
     
     
     
