@@ -26,7 +26,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Con
     
 
     
-    //Pre-linked IBOutlets
+   //Pre-linked IBOutlets
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -41,8 +41,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Con
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        locationManager.delegate = nil
-    
+
+        
+ 
         
         
     }
@@ -59,6 +60,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Con
         Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
             response in //inside a closure
             if response.result.isSuccess {
+                print("Success")
                 let weatherJSON : JSON = JSON(response.result.value!)// safe to unwrap because we checked with IF
                 
                 self.updateWeatherData(json : weatherJSON)
@@ -86,7 +88,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Con
     func updateWeatherData(json: JSON) {
         if let tempResult = json["main"]["temp"].double {
             
-            weatherDataModel.temperature = Int(tempResult - 273.15)
+            weatherDataModel.temperature = (Int(tempResult - 273.15) * 9 / 5) + 32
             weatherDataModel.city = json["name"].stringValue
             weatherDataModel.condition = json["name"][0]["id"].intValue
             weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
@@ -123,9 +125,11 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate { //Con
     //Write the didUpdateLocations method here:
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("In locationManager")
         let location = locations[locations.count - 1]
         if location.horizontalAccuracy > 0 {
             locationManager.stopUpdatingLocation()
+            locationManager.delegate = nil
             
             print("Longitude = \(location.coordinate.longitude), latitude = \(location.coordinate.latitude )")
             
