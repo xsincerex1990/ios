@@ -11,11 +11,18 @@ import UIKit
 
 //Write the protocol declaration here:
 
+//protocol to ensure delegate has this method and pass data between view controllers
+protocol ChangeCityDelagate {
+    func userEnteredCityName(city: String)
+}
+
 
 
 class ChangeCityViewController: UIViewController {
     
     //Declare the delegate variable here:
+    //declare optional delegate
+    var delegate : ChangeCityDelagate?
 
     
     //This is the pre-linked IBOutlets to the text field:
@@ -28,13 +35,16 @@ class ChangeCityViewController: UIViewController {
         
         
         //1 Get the city name the user entered in the text field
+        let cityName = changeCityTextField.text!
         
         
         //2 If we have a delegate set, call the method userEnteredANewCityName
-        
+        //Optional chaining
+        //basically here it says if there is a delegate value then execute that function  
+        delegate?.userEnteredCityName(city: cityName)
         
         //3 dismiss the Change City View Controller to go back to the WeatherViewController
-        
+        self.dismiss(animated: true, completion: nil)
         
     }
     
