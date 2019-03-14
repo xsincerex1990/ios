@@ -8,8 +8,12 @@
 
 import UIKit
 
+protocol CanReceive {
+    func dataReceived(data: String)
+}
+
 class SecondViewController: UIViewController {
-    
+    var delegate : CanReceive?
     var data = ""
 
     @IBOutlet weak var label2: UILabel!
@@ -22,6 +26,8 @@ class SecondViewController: UIViewController {
     }
     
     @IBAction func pressme2(_ sender: Any) {
+        delegate?.dataReceived(data: field2.text!)
+        dismiss(animated: true, completion: nil)
     }
 
 }

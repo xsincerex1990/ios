@@ -43,6 +43,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccU-SG-1UQ">
+                                <rect key="frame" x="33" y="53" width="66" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Color">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5Gw-ex-5T0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.3721479258" green="0.27580241859999999" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>

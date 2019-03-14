@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CanReceive {
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: UITextField!
@@ -21,13 +21,21 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "switch1", sender: self)
         
     }
+    @IBAction func changeColor(_ sender: Any) {
+        view.backgroundColor = UIColor.red
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "switch1" {
             let secondVC = segue.destination as! SecondViewController
             secondVC.data = textField.text!
+            secondVC.delegate = self
             
         }
+    }
+    
+    func dataReceived(data: String) {
+        label.text = data
     }
     
 }
