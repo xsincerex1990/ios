@@ -17,7 +17,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     let baseURL = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
+    let currencySymbols = ["$", "R$", "$", "¥", "€", "£", "$", "Rp", "₪", "₹", "¥", "$", "kr", "$", "zł", "lei", "₽", "kr", "$", "$", "R"]
     var finalURL = ""
+    var finalSymbol = ""
 
     //Pre-setup IBOutlets
     @IBOutlet weak var bitcoinPriceLabel: UILabel!
@@ -45,7 +47,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print(currencyArray[row])
+        finalURL = baseURL + currencyArray[row]
+        finalSymbol = currencySymbols[row]
+        
+        getPrice(url: finalURL)
     }
 
     
@@ -73,6 +78,20 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 //            }
 //
 //    }
+    func getPrice(url: String) {
+        Alamofire.request(url, method: .get).responseJSON {
+            response in
+            if response.result.isSuccess {
+                let btcJson : JSON = JSON(response.result.value!)
+                self.updateBtcPrice(json: btcJson)
+            }
+            else {
+                print("ERROR: \(String(describing: response.result.error))")
+                self.bitcoinPriceLabel.text = "Connection issues"
+            }
+        }
+    }
+    
 //
 //    
 //    
@@ -94,7 +113,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 //        updateUIWithWeatherData()
 //    }
 //    
-
+    func updateBtcPrice(json: JSON) {
+        if let priceOfBtc = json["ask"].int {
+            bitcoinPriceLabel.text = finalSymbol + String(priceOfBtc)
+        }
+    }
 
 
 
