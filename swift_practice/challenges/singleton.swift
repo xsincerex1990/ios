@@ -11,5 +11,6 @@ YourCar.color = "Blue"
 
 let myCar = Car() 
 
-print(YourCar.color)
-print(myCar.color)
+//different colors for different objects.....Go see singleton1.swift
+print(YourCar.color) // Blue 
+print(myCar.color) // Red
